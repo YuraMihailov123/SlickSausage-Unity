@@ -14,7 +14,7 @@ public class SausageSpawner : MonoBehaviour
     int length = 1;
 
     [SerializeField]
-    float partDistance = 6.12f;
+    float partDistance = 7.12f;
 
     [SerializeField]
     bool reset, spawn, snapFirst, snapLast;
@@ -52,11 +52,11 @@ public class SausageSpawner : MonoBehaviour
             
             if (i == 0)
             {
-                Destroy(gameObject.GetComponent<CharacterJoint>());
+                Destroy(gameObject.GetComponent<HingeJoint>());
             }
             else
             {
-                gameObject.GetComponent<CharacterJoint>().connectedBody = parentTransform.transform.Find((parentTransform.transform.childCount - 1).ToString()).GetComponent<Rigidbody>();
+                gameObject.GetComponent<HingeJoint>().connectedBody = parentTransform.transform.Find((parentTransform.transform.childCount - 1).ToString()).GetComponent<Rigidbody>();
             }
         }
     }
