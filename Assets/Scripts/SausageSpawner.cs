@@ -59,5 +59,6 @@ public class SausageSpawner : MonoBehaviour
                 gameObject.GetComponent<HingeJoint>().connectedBody = parentTransform.transform.Find((parentTransform.transform.childCount - 1).ToString()).GetComponent<Rigidbody>();
             }
         }
+        parentTransform.transform.eulerAngles = new Vector3(90, 0, 0);
     }
 }
