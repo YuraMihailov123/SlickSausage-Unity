@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class VoxelData
 {
-    int[,] data = new int[,] { { 0,1,1}, {1,1,1 }, { 1,1,0} };
+    int[,] data = new int[,] { { 1,1,1}, {1,1,1 }, { 1,1,1}, { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
 
     public int Width
     {
