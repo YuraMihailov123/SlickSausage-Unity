@@ -13,15 +13,19 @@ public class VoxelRender : MonoBehaviour
 
     float adjScale;
 
+    public VoxelData voxelData;
+
     private void Awake()
     {
+        voxelData = new VoxelData();
         mesh = GetComponent<MeshFilter>().mesh;
         adjScale = scale * 0.5f;
     }
 
     private void Start()
     {
-        GenerateVoxelMesh(new VoxelData());
+        
+        GenerateVoxelMesh(voxelData);
         UpdateMesh();
     }
 
@@ -38,18 +42,21 @@ public class VoxelRender : MonoBehaviour
                 if (data.GetCell(x, z) == 0)
                     continue;
                 if (x == 0 && z == 0)
-                    scale = 1f;
+                    scale = 0.85f;
                 else if (x == 0 && z == 1)
-                    scale = 0.95f;
+                    scale = 0.7f;
                 else if (x == 0 && z == 2)
-                    scale = 0.75f;
+                    scale = 0.5f;
                 else scale = 1f;
                 adjScale = scale * 0.5f;
-                
-                if(z>0)
+                if (z == 0)
+                    distLine = adjScale;
+                if (z > 0)
                     distLine += adjScale;
+
                 //MakeCube(adjScale, new Vector3((float)x * (adjScale/0.5f), 0, (float)z * (adjScale/0.5f)));
                 MakeCube(adjScale, new Vector3((float)(x-0.5f) * scale, 0, distLine));
+                
                 distLine += adjScale;
                 Debug.Log(distLine);
             }
