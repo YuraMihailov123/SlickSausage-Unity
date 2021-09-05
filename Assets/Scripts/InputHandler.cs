@@ -5,18 +5,23 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour
 {
     [SerializeField]
-    float forcePower = 10f;
+    float forcePower = 0.1f;
+
+    [SerializeField]
+    Vector3 touchedPostion;
+    [SerializeField]
+    Vector3 endTouchPosition;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && SausageSpawner.Instance.IsSausageOnGround())
+        /*if (Input.GetMouseButtonDown(0) && SausageSpawner.Instance.IsSausageOnGround())
         {
             Jump();
             Debug.Log("Touched");
-        }
+        }*/
 
-        /*
+        
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -28,21 +33,23 @@ public class InputHandler : MonoBehaviour
             }
             if (touch.phase == TouchPhase.Began)
             {
-                Debug.Log("Finger began");
+                touchedPostion = touch.position;
             }
             if (touch.phase == TouchPhase.Ended)
             {
-                Debug.Log("Finger ended");
+                endTouchPosition = touch.position;
+                Jump((endTouchPosition - touchedPostion).normalized);
             }
 
-        }*/
+        }
     }
 
-    void Jump()
+    void Jump(Vector3 dir)
     {
         foreach(Rigidbody rgb in SausageSpawner.Instance.sausageBodies)
         {
-            rgb.AddForce(new Vector3(1.0f, 1.25f, 0) * forcePower, ForceMode.Impulse);
+
+            rgb.AddForce(dir * forcePower, ForceMode.Impulse);
         }
     }
 }

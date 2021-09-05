@@ -64,6 +64,16 @@ public class SausageSpawner : MonoBehaviour
         }
     }
 
+    public void ResetSausage()
+    {
+        if (!reset)
+        {
+            reset = true;
+            sausageBodies.Clear();
+            sausageGroundChecks.Clear();
+        }
+    }
+
     public bool IsSausageOnGround()
     {
         foreach(GroundCheck groundCheck in sausageGroundChecks)
@@ -98,7 +108,7 @@ public class SausageSpawner : MonoBehaviour
             }
         }
         parentTransform.transform.eulerAngles = new Vector3(90, 0, 0);
-        parentTransform.transform.localPosition = new Vector3(-2.4f, 1.4f, -1.0f);
+        parentTransform.transform.localPosition = new Vector3(-1.6f, 3.4f, -1.0f);
         CameraController.Instance.player = sausageBodies[0].gameObject;
     }
 }

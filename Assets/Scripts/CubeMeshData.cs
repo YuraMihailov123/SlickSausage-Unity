@@ -28,9 +28,7 @@ public static class CubeMeshData
 
     private static int AddBias() // добавить или нет уклоны
     {
-        int rnd = Random.Range(0, 4);
-        if (rnd == 1 || rnd == 3 || rnd == 2)
-            return rnd;
+        int rnd = Random.Range(0, 10);
         if(rnd == 0) // - наклон на нас
         {
             vertices[4].x = -1.5f;
@@ -52,7 +50,7 @@ public static class CubeMeshData
     {
         float scaleY = 1f;
         Vector3[] fv = new Vector3[4];
-        //indexVerticesChanged = AddBias();
+        indexVerticesChanged = AddBias();
         for (int i = 0; i < fv.Length; i++)
         {
 

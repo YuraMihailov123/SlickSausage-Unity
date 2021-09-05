@@ -9,6 +9,15 @@ public class GroundCheck : MonoBehaviour
     [SerializeField]
     string collidingObjectTag = "";
 
+    private void Update()
+    {
+        Debug.Log(transform.localPosition.z + " - " + (MapController.Instance.yPos + 30));
+        if (transform.localPosition.z > MapController.Instance.yPos + 15)
+        {
+            SausageSpawner.Instance.ResetSausage();
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == collidingObjectTag)

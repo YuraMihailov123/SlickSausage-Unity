@@ -57,8 +57,8 @@ public class VoxelData
 
     public void GenerateData()
     {
-        int depth = Random.Range(3, 7);
-        int width = 15;
+        int depth = Random.Range(4, 10);
+        int width = 25;
         data = new int[width, depth];
         int prevCell = -1;
         for(int i = 0; i < width; i++)

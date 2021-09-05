@@ -30,18 +30,26 @@ public class MapController : MonoBehaviour
     Transform mapRoot;
     [SerializeField]
     int xPos = 0;
-    int yPos = 0;
+    public int yPos = 0;
 
     private void Init()
     {
         voxelMesh = Resources.Load<GameObject>("Prefabs/VoxelMesh");
-
+        xPos = 0;
+        yPos = 0;
         mapRoot = transform.Find("Map").transform;
 
-        GenerateMap(5);
+        GenerateMap(7);
     }
 
-    private void GenerateMap(int countToSpawn)
+    public void ResetParams()
+    {
+        xPos = 0;
+        yPos = 0;
+        GenerateMap(7);
+    }
+
+    public void GenerateMap(int countToSpawn)
     {
         for(int i = 0; i < countToSpawn; i++)
         {
@@ -51,7 +59,7 @@ public class MapController : MonoBehaviour
 
     public void CheckIfNeedToAddNewWall()
     {
-        if(xPos-CameraController.Instance.player.transform.localPosition.x < 15)
+        if(xPos-CameraController.Instance.player.transform.localPosition.x < 20)
         {
             CreateWall();
         }
@@ -64,7 +72,7 @@ public class MapController : MonoBehaviour
         tmp.transform.localPosition = new Vector3(xPos, yPos, 0);
         tmp.transform.eulerAngles = new Vector3(0, -90, -90);
         yPos += Random.Range(0, 4);
-        xPos += voxelData.Depth + voxelData.Depth / 2;
+        xPos += voxelData.Depth + 1;
     }
 
 }

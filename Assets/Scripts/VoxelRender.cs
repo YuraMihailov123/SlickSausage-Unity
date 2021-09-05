@@ -6,6 +6,7 @@ using UnityEngine;
 public class VoxelRender : MonoBehaviour
 {
     MeshCollider meshCollider;
+    MeshRenderer meshRenderer;
     Mesh mesh;
     List<Vector3> vertices;
     List<int> triangles;
@@ -22,7 +23,7 @@ public class VoxelRender : MonoBehaviour
         voxelData.GenerateData();
         mesh = GetComponent<MeshFilter>().mesh;
         meshCollider = GetComponent<MeshCollider>();
-        //meshCollider.convex = true;
+        meshRenderer = GetComponent<MeshRenderer>();
         adjScale = scale * 0.5f;
     }
 
@@ -47,12 +48,12 @@ public class VoxelRender : MonoBehaviour
                 {
                     continue;
                 }
-                /*if (x == 0 && z == 0)
+                /*if (z == 0)
                     scale = 0.5f;
-                else if (x == 0 && z == 1)
+                else if (z == 1)
                     scale = 0.75f;
-                else if (x == 0 && z == 2)
-                    scale = 0.85f;
+                else if (z == 2)
+                    scale = 1;
                 else scale = 1f;*/
                 adjScale = scale * 0.5f;
                 if (z == 0)
