@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    float forcePower = 10f;
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-
+            Jump();
+            Debug.Log("Touched");
         }
 
         /*
@@ -38,5 +36,13 @@ public class InputHandler : MonoBehaviour
             }
 
         }*/
+    }
+
+    void Jump()
+    {
+        foreach(Rigidbody rgb in SausageSpawner.Instance.sausageBodies)
+        {
+            rgb.AddForce(new Vector3(1.0f, 1.25f, 0) * forcePower, ForceMode.Impulse);
+        }
     }
 }

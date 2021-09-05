@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 159888678}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 380545147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 159888678}
   - {fileID: 279162384}
@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89185c815a9400c4c8c541b5e6a14ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forcePower: 0.2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +348,7 @@ GameObject:
   - component: {fileID: 1184759680}
   - component: {fileID: 1184759682}
   - component: {fileID: 1184759681}
+  - component: {fileID: 1184759683}
   m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
@@ -434,11 +436,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: -1
   far clip plane: 10
   field of view: 60
   orthographic: 1
-  orthographic size: 0.02
+  orthographic size: 0.08
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -454,6 +456,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1184759683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184759679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b2705e3b01494bc892c9eb423d4a6e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &1432603155
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,12 +624,11 @@ MonoBehaviour:
   partPrefab: {fileID: 8456275439929398198, guid: 55b0af9faad6f435db52aca729706561, type: 3}
   parentTransform: {fileID: 279162383}
   length: 2
-  partDistance: 0.4
+  partDistance: 0.5
   scale: 0.4
   reset: 0
   spawn: 1
-  snapFirst: 0
-  snapLast: 0
+  sausageBodies: []
 --- !u!4 &1968087392
 Transform:
   m_ObjectHideFlags: 0

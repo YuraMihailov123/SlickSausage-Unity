@@ -4,6 +4,26 @@ using UnityEngine;
 
 public class SausageSpawner : MonoBehaviour
 {
+    #region Singleton
+    private static SausageSpawner _instance;
+    public static SausageSpawner Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+
+    }
+
+    #endregion
+
+
     [SerializeField]
     GameObject partPrefab;
     [SerializeField]
@@ -20,7 +40,8 @@ public class SausageSpawner : MonoBehaviour
     float scale = 1f;
 
     [SerializeField]
-    bool reset, spawn, snapFirst, snapLast;
+    bool reset, spawn;
+
 
     public List<Rigidbody> sausageBodies;
 
@@ -54,9 +75,8 @@ public class SausageSpawner : MonoBehaviour
             gameObject.transform.eulerAngles = new Vector3(180, 0, 0);
             gameObject.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + partDistance * (i + 1), transform.localPosition.z);
             gameObject.transform.localScale = new Vector3(scale,scale,scale);
-            Debug.Log(partDistance * (i + 1));
             gameObject.name = parentTransform.transform.childCount.ToString();
-            
+            sausageBodies.Add(gameObject.GetComponent<Rigidbody>());
             if (i == 0)
             {
                 Destroy(gameObject.GetComponent<HingeJoint>());
