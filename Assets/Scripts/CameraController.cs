@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject player;        //Public variable to store a reference to the player game object
+    #region Singleton
+    private static CameraController _instance;
+    public static CameraController Instance { get { return _instance; } }
 
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
 
-    private Vector3 offset;            //Private variable to store the offset distance between the player and camera
+    }
 
-    // Use this for initialization
+    #endregion
+
+    public GameObject player; 
+
+    private Vector3 offset;    
+
     void Start()
     {
         if (player != null)
             offset = transform.position - player.transform.position;
     }
 
-    // LateUpdate is called after Update each frame
     void LateUpdate()
     {
         if (player != null)
