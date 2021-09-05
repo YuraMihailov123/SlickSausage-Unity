@@ -4,21 +4,27 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
+    [SerializeField]
+    bool isGrounded = false;
 
-    float distToGround = 0;
+    [SerializeField]
+    string collidingObjectTag = "";
 
-    private void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        distToGround = GetComponent<CapsuleCollider>().bounds.extents.y;
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.tag == collidingObjectTag)
+        {
+            isGrounded = true;
+            Debug.Log("Grounded!");
+        }
     }
 
-    private void Update()
+    private void OnCollisionExit(Collision collision)
     {
-        Debug.Log(isGrounded());
-    }
-
-    public bool isGrounded()
-    {
-        return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+        if (collision.gameObject.tag == collidingObjectTag)
+        {
+            isGrounded = false;
+        }
     }
 }

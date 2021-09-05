@@ -158,8 +158,10 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8456275439929398198}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3cc674ae7aa0415892a23ff962600e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrounded: 0
+  collidingObjectTag: Wall
