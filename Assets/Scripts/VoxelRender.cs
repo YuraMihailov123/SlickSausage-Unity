@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter),typeof(MeshRenderer))]
+[RequireComponent(typeof(MeshFilter),typeof(MeshRenderer), typeof(MeshCollider))]
 public class VoxelRender : MonoBehaviour
 {
+    MeshCollider meshCollider;
     Mesh mesh;
     List<Vector3> vertices;
     List<int> triangles;
@@ -19,6 +20,8 @@ public class VoxelRender : MonoBehaviour
     {
         voxelData = new VoxelData();
         mesh = GetComponent<MeshFilter>().mesh;
+        meshCollider = GetComponent<MeshCollider>();
+        //meshCollider.convex = true;
         adjScale = scale * 0.5f;
     }
 
@@ -58,7 +61,6 @@ public class VoxelRender : MonoBehaviour
                 MakeCube(adjScale, new Vector3((float)(x-0.5f) * scale, 0, distLine));
                 
                 distLine += adjScale;
-                Debug.Log(distLine);
             }
             distLine = 0;
         }
@@ -96,5 +98,6 @@ public class VoxelRender : MonoBehaviour
         mesh.vertices = vertices.ToArray();
         mesh.triangles = triangles.ToArray();
         mesh.RecalculateNormals();
+        meshCollider.sharedMesh = mesh;
     }
 }

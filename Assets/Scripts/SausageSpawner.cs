@@ -17,6 +17,9 @@ public class SausageSpawner : MonoBehaviour
     float partDistance = 7.12f;
 
     [SerializeField]
+    float scale = 1f;
+
+    [SerializeField]
     bool reset, spawn, snapFirst, snapLast;
 
     private void Update()
@@ -44,10 +47,12 @@ public class SausageSpawner : MonoBehaviour
         for(int i = 0; i < count; i++)
         {
             GameObject gameObject;
-
-            gameObject = Instantiate(partPrefab, new Vector3(transform.position.x , transform.position.y + partDistance * (i + 1), transform.position.z ), partPrefab.transform.rotation, parentTransform.transform);
+            gameObject = parentTransform.AddChild(partPrefab);
+            //gameObject = Instantiate(partPrefab, new Vector3(transform.localPosition.x , transform.localPosition.y + partDistance * (i + 1), transform.localPosition.z ), partPrefab.transform.rotation, parentTransform.transform);
             gameObject.transform.eulerAngles = new Vector3(180, 0, 0);
-
+            gameObject.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + partDistance * (i + 1), transform.localPosition.z);
+            gameObject.transform.localScale = new Vector3(scale,scale,scale);
+            Debug.Log(partDistance * (i + 1));
             gameObject.name = parentTransform.transform.childCount.ToString();
             
             if (i == 0)
@@ -60,5 +65,6 @@ public class SausageSpawner : MonoBehaviour
             }
         }
         parentTransform.transform.eulerAngles = new Vector3(90, 0, 0);
+        parentTransform.transform.localPosition = new Vector3(-2.4f, 1.4f, -1.0f);
     }
 }
