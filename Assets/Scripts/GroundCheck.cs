@@ -12,11 +12,9 @@ public class GroundCheck : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == collidingObjectTag)
         {
             isGrounded = true;
-            Debug.Log("Grounded!");
         }
     }
 

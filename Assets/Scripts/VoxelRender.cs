@@ -19,6 +19,7 @@ public class VoxelRender : MonoBehaviour
     private void Awake()
     {
         voxelData = new VoxelData();
+        voxelData.GenerateData();
         mesh = GetComponent<MeshFilter>().mesh;
         meshCollider = GetComponent<MeshCollider>();
         //meshCollider.convex = true;
@@ -43,13 +44,15 @@ public class VoxelRender : MonoBehaviour
             for (int z = 0; z < data.Depth; z++)
             {
                 if (data.GetCell(x, z) == 0)
+                {
                     continue;
+                }
                 if (x == 0 && z == 0)
-                    scale = 0.85f;
-                else if (x == 0 && z == 1)
-                    scale = 0.7f;
-                else if (x == 0 && z == 2)
                     scale = 0.5f;
+                else if (x == 0 && z == 1)
+                    scale = 0.75f;
+                else if (x == 0 && z == 2)
+                    scale = 0.85f;
                 else scale = 1f;
                 adjScale = scale * 0.5f;
                 if (z == 0)
@@ -57,14 +60,12 @@ public class VoxelRender : MonoBehaviour
                 if (z > 0)
                     distLine += adjScale;
 
-                //MakeCube(adjScale, new Vector3((float)x * (adjScale/0.5f), 0, (float)z * (adjScale/0.5f)));
                 MakeCube(adjScale, new Vector3((float)(x-0.5f) * scale, 0, distLine));
                 
                 distLine += adjScale;
             }
             distLine = 0;
         }
-            //scale = z % 2 == 0 ? 0.5f : 1f;
         
     }
 

@@ -71,7 +71,6 @@ public class SausageSpawner : MonoBehaviour
         {
             GameObject gameObject;
             gameObject = parentTransform.AddChild(partPrefab);
-            //gameObject = Instantiate(partPrefab, new Vector3(transform.localPosition.x , transform.localPosition.y + partDistance * (i + 1), transform.localPosition.z ), partPrefab.transform.rotation, parentTransform.transform);
             gameObject.transform.eulerAngles = new Vector3(180, 0, 0);
             gameObject.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + partDistance * (i + 1), transform.localPosition.z);
             gameObject.transform.localScale = new Vector3(scale,scale,scale);

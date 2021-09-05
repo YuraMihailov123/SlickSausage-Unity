@@ -42,14 +42,15 @@ public class MapController : MonoBehaviour
     private void GenerateMap(int countToSpawn)
     {
         int xPos = 0;
+        int yPos = 0;
         for(int i = 0; i < countToSpawn; i++)
         {
             var tmp = mapRoot.AddChild(voxelMesh);
             var voxelData = tmp.GetComponent<VoxelRender>().voxelData;
-            tmp.transform.localPosition = new Vector3(xPos, 0, 0);
+            tmp.transform.localPosition = new Vector3(xPos, yPos, 0);
             tmp.transform.eulerAngles = new Vector3(0, -90, -90);
-
-            xPos += voxelData.Depth + Random.Range(1, 3);
+            yPos += Random.Range(0, 4);
+            xPos += voxelData.Depth + voxelData.Depth/2;
         }
     }
 
