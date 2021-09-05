@@ -1009,3 +1009,4 @@ Received Import Request.
 Start importing Assets/Scripts/SausageSpawner.cs using Guid(bf0501a65ff663e48a57c41cbc1c2c1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5ea92b0ed3a41bd4c675cff120c0007') in 0.005583 seconds
   Import took 0.007640 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
