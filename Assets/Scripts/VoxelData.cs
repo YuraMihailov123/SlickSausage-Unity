@@ -6,7 +6,7 @@ public class VoxelData
 {
 
     int[,] data = new int[,] { 
-        { 0, 1, 1 },
+        { 1, 1, 1 },
         { 1, 1, 1 },
         { 1, 1, 1 }, 
         { 1, 1, 1 },

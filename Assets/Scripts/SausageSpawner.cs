@@ -39,8 +39,7 @@ public class SausageSpawner : MonoBehaviour
     [SerializeField]
     float scale = 1f;
 
-    [SerializeField]
-    bool reset, spawn;
+    public bool reset, spawn;
 
 
     public List<Rigidbody> sausageBodies;
@@ -71,6 +70,7 @@ public class SausageSpawner : MonoBehaviour
             reset = true;
             sausageBodies.Clear();
             sausageGroundChecks.Clear();
+            parentTransform.transform.rotation = Quaternion.identity;
         }
     }
 

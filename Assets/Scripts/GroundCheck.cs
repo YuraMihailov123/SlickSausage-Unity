@@ -15,6 +15,7 @@ public class GroundCheck : MonoBehaviour
         if (transform.localPosition.z > MapController.Instance.yPos + 15)
         {
             SausageSpawner.Instance.ResetSausage();
+            GameControllerUI.Instance.restart.SetActive(true);
         }
     }
 

@@ -22,7 +22,7 @@ public class InputHandler : MonoBehaviour
         }*/
 
         
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && SausageSpawner.Instance.IsSausageOnGround() && SausageSpawner.Instance.spawn)
         {
             Touch touch = Input.GetTouch(0);
 

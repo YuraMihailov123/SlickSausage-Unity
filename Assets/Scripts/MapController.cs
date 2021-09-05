@@ -32,6 +32,8 @@ public class MapController : MonoBehaviour
     int xPos = 0;
     public int yPos = 0;
 
+    
+
     private void Init()
     {
         voxelMesh = Resources.Load<GameObject>("Prefabs/VoxelMesh");
