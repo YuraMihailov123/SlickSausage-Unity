@@ -22,6 +22,8 @@ public class SausageSpawner : MonoBehaviour
     [SerializeField]
     bool reset, spawn, snapFirst, snapLast;
 
+    public List<Rigidbody> sausageBodies;
+
     private void Update()
     {
         if (reset)
