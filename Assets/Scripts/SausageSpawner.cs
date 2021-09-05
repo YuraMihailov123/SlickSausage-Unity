@@ -44,6 +44,7 @@ public class SausageSpawner : MonoBehaviour
 
 
     public List<Rigidbody> sausageBodies;
+    public List<GroundCheck> sausageGroundChecks;
 
     private void Update()
     {
@@ -63,6 +64,16 @@ public class SausageSpawner : MonoBehaviour
         }
     }
 
+    public bool IsSausageOnGround()
+    {
+        foreach(GroundCheck groundCheck in sausageGroundChecks)
+        {
+            if (groundCheck.isGrounded)
+                return true;
+        }
+        return false;
+    }
+
     public void Spawn()
     {
         int count = (int)(length / partDistance);
@@ -76,6 +87,7 @@ public class SausageSpawner : MonoBehaviour
             gameObject.transform.localScale = new Vector3(scale,scale,scale);
             gameObject.name = parentTransform.transform.childCount.ToString();
             sausageBodies.Add(gameObject.GetComponent<Rigidbody>());
+            sausageGroundChecks.Add(gameObject.GetComponent<GroundCheck>());
             if (i == 0)
             {
                 Destroy(gameObject.GetComponent<HingeJoint>());

@@ -47,13 +47,13 @@ public class VoxelRender : MonoBehaviour
                 {
                     continue;
                 }
-                if (x == 0 && z == 0)
+                /*if (x == 0 && z == 0)
                     scale = 0.5f;
                 else if (x == 0 && z == 1)
                     scale = 0.75f;
                 else if (x == 0 && z == 2)
                     scale = 0.85f;
-                else scale = 1f;
+                else scale = 1f;*/
                 adjScale = scale * 0.5f;
                 if (z == 0)
                     distLine = adjScale;
@@ -76,6 +76,7 @@ public class VoxelRender : MonoBehaviour
         {
             MakeFace(i, cubeScale, cubePos);
         }
+        CubeMeshData.ResetVertices();
     }
 
     void MakeFace(int dir,float faceScale, Vector3 facePos)

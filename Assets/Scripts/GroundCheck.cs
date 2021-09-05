@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    [SerializeField]
-    bool isGrounded = false;
+    public bool isGrounded = false;
 
     [SerializeField]
     string collidingObjectTag = "";
 
     private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == collidingObjectTag)
+        {
+            isGrounded = true;
+            MapController.Instance.CheckIfNeedToAddNewWall();
+        }
+        
+    }
+
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag == collidingObjectTag)
         {

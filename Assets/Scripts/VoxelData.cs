@@ -84,6 +84,6 @@ public class VoxelData
             }
             prevCell = -1;
         }
-        PrintData();
+        //PrintData();
     }
 }
