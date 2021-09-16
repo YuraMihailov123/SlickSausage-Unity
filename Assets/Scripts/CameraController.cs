@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
 
     private Vector3 offset;    
 
-    void Start()
+    public void CalculateOffset()
     {
         if (player != null)
             offset = transform.position - player.transform.position;
@@ -36,6 +36,6 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         if (player != null)
-            transform.position = new Vector3(player.transform.position.x + offset.x, player.transform.position.y + offset.y,transform.position.z);
+            transform.position = new Vector3(transform.position.x , transform.position.y,player.transform.position.z + (offset.z));
     }
 }

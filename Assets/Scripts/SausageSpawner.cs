@@ -43,7 +43,6 @@ public class SausageSpawner : MonoBehaviour
 
 
     public List<Rigidbody> sausageBodies;
-    public List<GroundCheck> sausageGroundChecks;
 
     private void Update()
     {
@@ -69,19 +68,8 @@ public class SausageSpawner : MonoBehaviour
         {
             reset = true;
             sausageBodies.Clear();
-            sausageGroundChecks.Clear();
             parentTransform.transform.rotation = Quaternion.identity;
         }
-    }
-
-    public bool IsSausageOnGround()
-    {
-        foreach(GroundCheck groundCheck in sausageGroundChecks)
-        {
-            if (groundCheck.isGrounded)
-                return true;
-        }
-        return false;
     }
 
     public void Spawn()
@@ -92,12 +80,11 @@ public class SausageSpawner : MonoBehaviour
         {
             GameObject gameObject;
             gameObject = parentTransform.AddChild(partPrefab);
-            gameObject.transform.eulerAngles = new Vector3(180, 0, 0);
+            gameObject.transform.localEulerAngles = new Vector3(180, 0, 0);
             gameObject.transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + partDistance * (i + 1), transform.localPosition.z);
             gameObject.transform.localScale = new Vector3(scale,scale,scale);
             gameObject.name = parentTransform.transform.childCount.ToString();
             sausageBodies.Add(gameObject.GetComponent<Rigidbody>());
-            sausageGroundChecks.Add(gameObject.GetComponent<GroundCheck>());
             if (i == 0)
             {
                 Destroy(gameObject.GetComponent<HingeJoint>());
@@ -107,8 +94,15 @@ public class SausageSpawner : MonoBehaviour
                 gameObject.GetComponent<HingeJoint>().connectedBody = parentTransform.transform.Find((parentTransform.transform.childCount - 1).ToString()).GetComponent<Rigidbody>();
             }
         }
-        parentTransform.transform.eulerAngles = new Vector3(90, 0, 0);
-        parentTransform.transform.localPosition = new Vector3(-1.6f, 3.4f, -1.0f);
+        sausageBodies[0].gameObject.AddComponent<SnakeMovement>();
+        sausageBodies[0].constraints = RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationX; 
+        //sausageBodies[0].isKinematic = true;
+        //sausageBodies[0].useGravity = false;
+
         CameraController.Instance.player = sausageBodies[0].gameObject;
+        CameraController.Instance.CalculateOffset();
+
+        parentTransform.transform.localEulerAngles = new Vector3(90, 180, 0);
+        parentTransform.transform.localPosition = new Vector3(-1.6f, 3.4f, -25.0f);
     }
 }
